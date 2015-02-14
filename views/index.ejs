@@ -7,5 +7,11 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
+    <ul>
+    <% for(var i=0; i<stories.length; i++) {%>
+       <li><a href="/story/<%= stories[i].slug %>"><%= stories[i].title %></a></li>
+    <% } %>
+    </ul>
   </body>
 </html>
