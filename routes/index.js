@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var rss = require('../retrieve/getRss');
+var story = require('../retrieve');
 var normalize = require('../utils/normalize');
-/* GET home page. */
+
+
 router.get('/', function(req, res, next) { 
     rss(function (err, doc) { 
         var articles = doc.map(function (feed) {
@@ -27,13 +29,21 @@ router.get('/', function(req, res, next) {
             return a.pubDate > b.pubDate ? -1 : 1;
         }));
     });
-     
 });
-router.get('/story/:slug', function(req, res, next) {
+
+
+router.get('/story/:slug/:time', function(req, res, next) {
  
         var db = require('../db')('stories');
- 
-        res.send({});
+        var slug = req.params.slug + '/' + req.params.time;
+        console.log(slug);
+        db.findOne({slug:slug}, function (err, result) {
+            console.log(err);
+            console.log(result);
+            story(result.link, function (err, data) {
+                res.send(data);
+            });
+        }); 
  
      
 });
