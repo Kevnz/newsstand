@@ -4,7 +4,6 @@ var feeds = config.get('feeds');
 
 var async = require('async');
 
-
 module.exports = function (mainCallback) {
     var rss = require('parserss');
 
