@@ -21,7 +21,9 @@ router.get('/stories', function(req, res, next) {
         });
         var fullArticles = articles[0].concat(articles[1]);
         var db = require('../db')('stories');
+
         var mappedArticles = fullArticles.map(function (article) {
+            if(article == undefined) return;
             var time = new Date(article.pubDate).getTime();
             return {
                 title: article.title,
@@ -32,18 +34,21 @@ router.get('/stories', function(req, res, next) {
                 link: article.link,
                 image: safeEnclosure(article)
             };
+        }).filter(function(article){
+            return article !== undefined; 
         });
+
         db.insert(mappedArticles);
         mappedArticles.sort(function (a,b) {
             return a.pubDate > b.pubDate ? -1 : 1;
         });
-        res.render('index', {title: 'News Stand', stories: mappedArticles});
+        res.send(mappedArticles);
     });
 });
 
 router.get('/', function(req, res, next) { 
     var db = require('../db')('stories');
-    db.find({}).limit(20).toArray(function(err, docs) {
+    db.find({}).limit(40).toArray(function(err, docs) {
         res.render('index', {title: 'News Stand', stories: docs});
     }); 
 });
