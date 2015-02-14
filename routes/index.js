@@ -36,11 +36,11 @@ router.get('/story/:slug/:time', function(req, res, next) {
  
         var db = require('../db')('stories');
         var slug = req.params.slug + '/' + req.params.time;
-        console.log(slug);
+
         db.findOne({slug:slug}, function (err, result) {
-            console.log(err);
-            console.log(result);
+
             story(result.link, function (err, data) {
+                data.link = result.link;
                 res.send(data);
             });
         }); 
