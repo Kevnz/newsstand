@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var rss = require('../retrieve/getRss');
+var normalize = require('../utils/normalize');
 /* GET home page. */
 router.get('/', function(req, res, next) { 
     rss(function (err, doc) { 
@@ -10,10 +11,12 @@ router.get('/', function(req, res, next) {
         var fullArticles = articles[0].concat(articles[1]);
         var db = require('../db')('stories');
         var mappedArticles = fullArticles.map(function (article) {
+            var time = new Date(article.pubDate).getTime();
             return {
                 title: article.title,
+                slug:normalize(article.title) + '/' + time,
                 description: article.description,
-                date: new Date(article.pubDate).getTime(),
+                date: time,
                 pubDate: article.pubDate,
                 link: article.link,
                 image: article['rss:enclosure']['@'] ? article['rss:enclosure']['@'].url : ''
