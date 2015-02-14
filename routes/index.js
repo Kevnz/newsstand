@@ -40,21 +40,20 @@ router.get('/stories', function(req, res, next) {
         res.render('index', {title: 'News Stand', stories: mappedArticles});
     });
 });
+
 router.get('/', function(req, res, next) { 
     var db = require('../db')('stories');
     db.find({}).limit(20).toArray(function(err, docs) {
         res.render('index', {title: 'News Stand', stories: docs});
     }); 
 });
+
 router.get('/story/:slug/:time', function(req, res, next) {
-    console.log('sluggo');
     var db = require('../db')('stories');
     var slug = req.params.slug + '/' + req.params.time;
 
-    db.findOne({slug:slug}, function (err, result) {
-        console.log('sluggo');
-        story(result.link, function (err, data) {
-            console.log('sluggo');
+    db.findOne({slug:slug}, function (err, result) { 
+        story(result.link, function (err, data) { 
             result.content = data.content;
             res.render('story', { title: 'News Stand', story: result});
         });
