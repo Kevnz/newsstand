@@ -12,8 +12,8 @@ var safeEnclosure = function (article) {
         }
     }
     return result;
+};
 
-}
 router.get('/stories', function(req, res, next) { 
     rss(function (err, doc) { 
         var articles = doc.map(function (feed) {
@@ -59,6 +59,7 @@ router.get('/story/:slug/:time', function(req, res, next) {
         });
     });
 });
+
 router.get('/storydata/:slug/:time', function(req, res, next) {
  
         var db = require('../db')('stories');
