@@ -1,12 +1,15 @@
 /** @jsx React.DOM */
-var React = require('react'), Stories = require('./stories');
+var React = require('react'), Stories = require('./stories'), Story = require('./story');
 var StoriesStore = require('../stores/stories-store');
+var Router = require('react-router');
+var { Route, DefaultRoute, RouteHandler, Link } = Router;
 
 var getAppState = function () {
     return {
         stories: []
     }
 };
+
 
 
 var App = React.createClass({
@@ -31,7 +34,11 @@ var App = React.createClass({
         return (
         <div id="main"> 
                 <h1>News-Stand</h1>
+                
                 <Stories stories={this.state.stories} />
+                <div className="news-story">
+                  <RouteHandler/>
+                </div>
         </div>
         );
     },
