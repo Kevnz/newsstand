@@ -5,13 +5,8 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <div id="container"></div>
 
-    <ul>
-    <% for(var i=0; i<stories.length; i++) {%>
-       <li><a href="/story/<%= stories[i].slug %>"><%= stories[i].title %></a></li>
-    <% } %>
-    </ul>
+    <script src="/js/app.js"></script>
   </body>
 </html>
