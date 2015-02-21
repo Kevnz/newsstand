@@ -16,6 +16,7 @@ var safeEnclosure = function (article) {
 
 router.get('/stories', function(req, res, next) { 
     rss(function (err, doc) { 
+        if (err) { return; }
         var articles = doc.map(function (feed) {
             return feed.articles;
         });
