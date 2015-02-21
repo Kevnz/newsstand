@@ -47,10 +47,10 @@ router.get('/stories', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) { 
-    var db = require('../db')('stories');
-    db.find({}).limit(40).toArray(function(err, docs) {
-        res.render('index', {title: 'News Stand', stories: docs});
-    }); 
+    //var db = require('../db')('stories');
+    //db.find({}).limit(40).toArray(function(err, docs) {
+        res.render('index', {title: 'News Stand' });
+    //}); 
 });
 
 router.get('/story/:slug/:time', function(req, res, next) {
