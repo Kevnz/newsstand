@@ -13,8 +13,9 @@ var StoryList = React.createClass({
     render: function() {
 
         var storyNodes = this.props.stories ? this.props.stories.map(function (item) {
+            var bits = item.slug.split('/');
             return (<li key={item.slug}>
-                <Link to='story' params={{slug: item.slug, date:item.date}}>{item.title}</Link>
+                <Link to='story' params={{slug: bits[0], date:bits[1]}}>{item.title}</Link>
                 </li>)
         }) : <li> No Stories</li>;
         return (
