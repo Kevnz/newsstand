@@ -1,15 +1,18 @@
 /** @jsx React.DOM */
-var React = require('react')
+var React = require('react');
+var Router =require('react-router');
+
 var Story = React.createClass({
+    mixins: [ Router.State ],
     getInitialState: function() {
-        return {stories: [ ]};
+        return {story: [ ]};
     },
     componentWillMount: function () {
-        //this.loadListsFromServer();
+        this.loadStoryFromServer();
     },
     render: function() {
-        console.log(this.props);
-
+        console.log(this.getParams());
+        console.log('need data damn it')
         return (
             <div>
                 <h2>{this.props.title}</h2>
