@@ -32,14 +32,14 @@ var App = React.createClass({
         console.log(this.state);
 
         return (
-        <div id="main"> 
-                <h1>News-Stand</h1>
-                
-                <Stories stories={this.state.stories} />
-                <div className="news-story">
-                  <RouteHandler/>
-                </div>
-        </div>
+            <div id="main"> 
+                    <h1>News-Stand</h1>
+                    
+                    <Stories stories={this.state.stories} />
+                    <div className="news-story">
+                      <RouteHandler/>
+                    </div>
+            </div>
         );
     },
     _onChange: function(data) {
