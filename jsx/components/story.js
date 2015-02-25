@@ -20,7 +20,6 @@ var Story = React.createClass({
     render: function() {
         
         var bodyContent =this.state.content ? this.state.content.body.map(function (para) {
-            var bits = item.slug.split('/');
             return (<p>{para}</p>);
         }) : <div>I got nothing</div>
         return (
