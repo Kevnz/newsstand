@@ -9,7 +9,7 @@ var { Route, DefaultRoute, RouteHandler, Link } = Router;
 var routes = (
   <Route handler={App}>
     <DefaultRoute handler={Index}/>
-    <Route name="story" path="story/:slug/:date" handler={Story}/>
+    <Route name="story" path="story/:slug/:time" handler={Story}/>
   </Route>
 );
 Router.run(routes, function (Handler) {
