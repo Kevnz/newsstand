@@ -14,7 +14,14 @@ var StoriesStore = merge(EventEmitter.prototype, {
             .end(function(error, response){
                 _this.emit('loaded', response.body);
             });
-
+    },
+    loadStory: function (slug, time) {
+        var _this = this;
+        agent
+            .get('/storydata/' + slug + '/' + time)
+            .end(function(error, response){
+                _this.emit('storyLoaded', response.body);
+            });
     }
 });
 
