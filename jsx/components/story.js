@@ -21,7 +21,7 @@ var Story = React.createClass({
         
         var bodyContent =this.state.content ? this.state.content.body.map(function (para) {
             return (<p>{para}</p>);
-        }) : <div>I got nothing</div>
+        }) : <div>Story is Loading</div>
         return (
             <div>
                 <h2>{this.state.title}</h2>
