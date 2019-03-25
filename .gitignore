@@ -1,3 +1,6 @@
 node_modules
-config
-public/stylesheets/style.css
+dist
+build
+.cache
+.DS_Store
+*.log

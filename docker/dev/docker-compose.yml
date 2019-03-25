@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  pgdb:
+    image: postgres:9.6.6-alpine
+    environment:
+      POSTGRES_USER: dbuser
+      POSTGRES_PASSWORD: dbpassword_password
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis:4
+    ports:
+      - "6379:6379"
+  neo4j:
+    image: neo4j:3.4
+    environment:
+      NEO4J_AUTH: none
+    ports:
+    - "7474:7474"
+    - "7687:7687"
+  mongodb:
+    image: mongo:3.6
+    ports:
+      - "27017:27017"
